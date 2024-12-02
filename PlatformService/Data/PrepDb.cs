@@ -1,4 +1,4 @@
-using PlatformService.Models;
+using PlatformService.Domain;
 
 namespace PlatformService.Data;
 

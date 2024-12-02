@@ -1,5 +1,5 @@
 using PlatformService.Data;
-using PlatformService.Models;
+using PlatformService.Domain;
 
 namespace PlatformService.Repos;
 

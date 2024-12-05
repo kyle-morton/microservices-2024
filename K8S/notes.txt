@@ -1,0 +1,21 @@
+Key Ideas
+- Cluster/Node - environment in which K8S orchestrates everything
+- Pod - container within a node running it's own containers (applications, sql server, etc)
+
+Key Commands
+- kubectl -> base command upon which we'll build our k8s commands
+
+
+
+1) Create a deployment file for our platform service (deploy it to a POD)
+- filename: platforms-depl.yaml
+- defines the images, cluster IPs, etc needed to setup inside this Pod
+
+2) create the deployment in K8s -> move to this directory and run "kubectl apply -f .\platforms-depl.yaml"
+- this creates the pod in k8s, which will spin up, then you can view using "kubectl get deployments"
+- REMEMBER: the pod is a container itself and runs your app
+
+3) next we'll create a node port into the node so we can access our pod(s) inside the node/cluster -> "kubectl apply -f .\platforms-np-srv.yaml'
+- this creates the service in K8S
+- verify it's running using 'kubectl get services'
+

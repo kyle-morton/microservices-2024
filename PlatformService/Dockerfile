@@ -16,3 +16,6 @@ COPY --from=build-env /app/out .
 
 # RUN the app 
 ENTRYPOINT [ "dotnet", "PlatformService.dll" ]
+
+
+# To Run -> docker run -p 8080:8080 -d kylemorton5770/platformservice

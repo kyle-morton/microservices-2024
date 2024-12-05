@@ -9,5 +9,5 @@ spec:
   ports:
     - name: platformservice
       protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 8080 # port on the inside of our node (remember: this creates a port starting w/ 3####)
+      targetPort: 8080 # port it should map to on our running app (inside a pod)

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PlatformService.Data;
 using PlatformService.Repos;
+using PlatformService.SyncDataServices.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,8 @@ builder.Services.AddDbContext<AppDbContext>(options => {
 
 // Services
 builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
+
+builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
 
 // Register Automapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -32,5 +35,9 @@ app.UseHttpsRedirection();
 
 // autopopulate db
 PrepDb.PopulateDb(app);
+
+Console.WriteLine();
+Console.WriteLine($"PlatformService: CommandService Endpoint {app.Configuration["CommandService"]}");
+Console.WriteLine();
 
 app.Run();

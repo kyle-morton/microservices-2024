@@ -109,79 +109,6 @@
 			]
 		},
 		{
-			"name": "K8S",
-			"item": [
-				{
-					"name": "PlatformService",
-					"item": [
-						{
-							"name": "Get Platforms",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{K8S_PlatformSrv_BaseUrl}}/api/platforms",
-									"host": [
-										"{{K8S_PlatformSrv_BaseUrl}}"
-									],
-									"path": [
-										"api",
-										"platforms"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Platform By Id",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{K8S_PlatformSrv_BaseUrl}}/api/platforms",
-									"host": [
-										"{{K8S_PlatformSrv_BaseUrl}}"
-									],
-									"path": [
-										"api",
-										"platforms"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Create Platform",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"testName\",\r\n    \"publisher\": \"testPublisher\",\r\n    \"cost\": \"testCost\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{K8S_PlatformSrv_BaseUrl}}/api/platforms",
-									"host": [
-										"{{K8S_PlatformSrv_BaseUrl}}"
-									],
-									"path": [
-										"api",
-										"platforms"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				}
-			]
-		},
-		{
 			"name": "Docker",
 			"item": [
 				{
@@ -248,6 +175,158 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "K8S",
+			"item": [
+				{
+					"name": "NodePort",
+					"item": [
+						{
+							"name": "PlatformService",
+							"item": [
+								{
+									"name": "Get Platforms",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{K8S_PlatformSrv_BaseUrl}}/api/platforms",
+											"host": [
+												"{{K8S_PlatformSrv_BaseUrl}}"
+											],
+											"path": [
+												"api",
+												"platforms"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Platform By Id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{K8S_PlatformSrv_BaseUrl}}/api/platforms",
+											"host": [
+												"{{K8S_PlatformSrv_BaseUrl}}"
+											],
+											"path": [
+												"api",
+												"platforms"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Platform",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"testName\",\r\n    \"publisher\": \"testPublisher\",\r\n    \"cost\": \"testCost\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{K8S_PlatformSrv_BaseUrl}}/api/platforms",
+											"host": [
+												"{{K8S_PlatformSrv_BaseUrl}}"
+											],
+											"path": [
+												"api",
+												"platforms"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Nginx (API Gateway)",
+					"item": [
+						{
+							"name": "PlatformService",
+							"item": [
+								{
+									"name": "Get Platforms",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{K8S_Nginx_Gateway_BaseUrl\n}}/api/platforms",
+											"host": [
+												"{{K8S_Nginx_Gateway_BaseUrl\n}}"
+											],
+											"path": [
+												"api",
+												"platforms"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Platform By Id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{K8S_Nginx_Gateway_BaseUrl\n}}/api/platforms/1",
+											"host": [
+												"{{K8S_Nginx_Gateway_BaseUrl\n}}"
+											],
+											"path": [
+												"api",
+												"platforms",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Platform",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"testName\",\r\n    \"publisher\": \"testPublisher\",\r\n    \"cost\": \"testCost\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{K8S_Nginx_Gateway_BaseUrl\n}}/api/platforms",
+											"host": [
+												"{{K8S_Nginx_Gateway_BaseUrl\n}}"
+											],
+											"path": [
+												"api",
+												"platforms"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	],
 	"event": [
@@ -276,6 +355,11 @@
 		{
 			"key": "K8S_PlatformSrv_BaseUrl",
 			"value": "http://localhost:30153",
+			"type": "string"
+		},
+		{
+			"key": "K8S_Nginx_Gateway_BaseUrl\n",
+			"value": "http://acme.com",
 			"type": "string"
 		},
 		{

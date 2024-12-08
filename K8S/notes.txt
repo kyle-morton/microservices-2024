@@ -19,3 +19,11 @@ Key Commands
 - this creates the service in K8S
 - verify it's running using 'kubectl get services'
 
+4) create deployment in k8s for commandSrv 
+
+5) create clusteredIP on both platform and commands service so they can communicate w/ each other's POD from within the K8S node
+
+6) create an nginx controller using below command (using as our API Gateway) - 
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0-beta.0/deploy/static/provider/cloud/deploy.yaml 
+
+7) setup a routing file for nginx to (ingress-srv.yaml)

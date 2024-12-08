@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: commands-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: commandsservice
+  template:
+    metadata:
+      labels:
+        app: commandsservice
+    spec:
+      containers:
+        - name: commandsservice
+          image: kylemorton5770/commandsservice:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: commands-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: commandsservice
+  ports:
+  - name: commandsservice
+    protocol: TCP
+    port: 8080
+    targetPort: 8080
+#   - name: plafromgrpc
+#     protocol: TCP
+#     port: 666
+#     targetPort: 666

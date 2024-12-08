@@ -31,7 +31,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapControllers();
-app.UseHttpsRedirection();
+
+// skipping https since it makes K8S setup harder (needed but not for this tutorial)
+// app.UseHttpsRedirection();
 
 // autopopulate db
 PrepDb.PopulateDb(app);

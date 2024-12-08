@@ -19,3 +19,5 @@ ENTRYPOINT [ "dotnet", "PlatformService.dll" ]
 
 
 # To Run -> docker run -p 8080:8080 -d kylemorton5770/platformservice
+# To build (repackage image) -> docker build -t kylemorton5770/platformservice .
+# To push (replace image in Dhub) -> docker push kylemorton5770/platformservice .

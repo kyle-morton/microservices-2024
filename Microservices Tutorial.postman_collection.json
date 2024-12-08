@@ -1,0 +1,297 @@
+{
+	"info": {
+		"_postman_id": "76d9cf66-93b6-4f2c-a034-afbc611142c8",
+		"name": "Microservices Tutorial",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18830234"
+	},
+	"item": [
+		{
+			"name": "Local",
+			"item": [
+				{
+					"name": "Platforms",
+					"item": [
+						{
+							"name": "Get Platforms",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{Local_PlatformSrv_BaseUrl}}/api/platforms",
+									"host": [
+										"{{Local_PlatformSrv_BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"platforms"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Platform",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"testName\",\r\n    \"publisher\": \"testPublisher\",\r\n    \"cost\": \"testCost\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{Local_PlatformSrv_BaseUrl}}/api/platforms",
+									"host": [
+										"{{Local_PlatformSrv_BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"platforms"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Platform By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{Local_PlatformSrv_BaseUrl}}/platforms?id=3",
+									"host": [
+										"{{Local_PlatformSrv_BaseUrl}}"
+									],
+									"path": [
+										"platforms"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Commands",
+					"item": [
+						{
+							"name": "Create Platform",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{Local_CommandSrv_BaseURl}}/api/c/platforms",
+									"host": [
+										"{{Local_CommandSrv_BaseURl}}"
+									],
+									"path": [
+										"api",
+										"c",
+										"platforms"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "K8S",
+			"item": [
+				{
+					"name": "PlatformService",
+					"item": [
+						{
+							"name": "Get Platforms",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{K8S_PlatformSrv_BaseUrl}}/api/platforms",
+									"host": [
+										"{{K8S_PlatformSrv_BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"platforms"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Platform By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{K8S_PlatformSrv_BaseUrl}}/api/platforms",
+									"host": [
+										"{{K8S_PlatformSrv_BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"platforms"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Platform",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"testName\",\r\n    \"publisher\": \"testPublisher\",\r\n    \"cost\": \"testCost\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{K8S_PlatformSrv_BaseUrl}}/api/platforms",
+									"host": [
+										"{{K8S_PlatformSrv_BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"platforms"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Docker",
+			"item": [
+				{
+					"name": "Get Platforms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Docker_PlatformSrv_BaseUrl}}/api/platforms",
+							"host": [
+								"{{Docker_PlatformSrv_BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"platforms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Platform By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Docker_PlatformSrv_BaseUrl}}/api/platforms",
+							"host": [
+								"{{Docker_PlatformSrv_BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"platforms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Platform",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testName\",\r\n    \"publisher\": \"testPublisher\",\r\n    \"cost\": \"testCost\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Docker_PlatformSrv_BaseUrl}}/api/platforms",
+							"host": [
+								"{{Docker_PlatformSrv_BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"platforms"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "K8S_PlatformSrv_BaseUrl",
+			"value": "http://localhost:30153",
+			"type": "string"
+		},
+		{
+			"key": "Local_PlatformSrv_BaseUrl",
+			"value": "http://localhost:5087",
+			"type": "string"
+		},
+		{
+			"key": "Local_CommandSrv_BaseURl",
+			"value": "http://localhost:5235",
+			"type": "string"
+		},
+		{
+			"key": "Docker_PlatformSrv_BaseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

@@ -27,3 +27,21 @@ Key Commands
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0-beta.0/deploy/static/provider/cloud/deploy.yaml 
 
 7) setup a routing file for nginx to (ingress-srv.yaml)
+- this will be our api gateway so we can use a single hostname (acme.com) and, based on endpoint, nginx will forward it to the correct server
+
+8) next setup the persistent volume claim (PVC)
+- storage that SQL Server will use inside k8s
+- file for deploying this: local-pvc.yaml (kubectl apply -f local-pvc.yaml)
+- setup prior to SQL server so we can tell SQLSrv name of PVC to use for storage
+
+9) Create SQL Server SA Pw secret in K8S (reference using db-user-pass name)
+- kubectl create secret generic db-user-pass --from-literal=SA_PASSWORD='pa55w0rd!'
+
+10) Create sql server instance, cluster IP for it inside the node, then a load balancer so we can access it from outside K8S in SSMS 
+- kubectl apply -f mssql-plat-depl.yaml
+- will take a few minutes for the pod to get started and run
+- connection notes from ssms:
+    - use ssms w/ localhost:1433, use sa & pw as auth 
+    - remember to stop any existing local sql server instances or it will interfere w/ this 
+    - check "trust server cert" on ssms login screen or it won't allow the connection
+

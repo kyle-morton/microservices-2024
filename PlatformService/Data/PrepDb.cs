@@ -1,3 +1,5 @@
+using System.Net.Mime;
+using Microsoft.EntityFrameworkCore;
 using PlatformService.Domain;
 
 namespace PlatformService.Data;
@@ -9,11 +11,27 @@ public static class PrepDb
         using var serviceScope = app.Services.CreateScope();
 
         var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
-        Seed(context);
+        Seed(context, app.Environment.IsProduction());
     }
 
-    private static void Seed(AppDbContext context)
+    private static void Seed(AppDbContext context, bool isProd)
     {
+        // run migs if running against sql server
+        if (isProd)  
+        {
+            Console.WriteLine("PrepDb: Attempting to apply migrations...");
+            try
+            {
+                context.Database.Migrate(); 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"PrepDb: unable to apply migrations {ex}");
+                throw;
+            }
+        }
+
+
         if (context == null)
         {
             Console.WriteLine("PrepDb: context null");

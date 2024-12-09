@@ -4,11 +4,26 @@ using PlatformService.Repos;
 using PlatformService.SyncDataServices.Http;
 
 var builder = WebApplication.CreateBuilder(args);
+Console.WriteLine("PlatformService -> " + builder.Environment.EnvironmentName);
 
-// DbContext
-builder.Services.AddDbContext<AppDbContext>(options => {
-    options.UseInMemoryDatabase("InMemoryDB");
-});
+// DbContext - memory if not prod, sql server if prod
+if (!builder.Environment.IsProduction()) 
+{
+    Console.WriteLine("PlatformService -> Using in memory db");
+    builder.Services.AddDbContext<AppDbContext>(options => {
+        options.UseInMemoryDatabase("InMemoryDB");
+    });
+}
+else 
+{
+    var connString = builder.Configuration.GetConnectionString("PlatformConnStr");
+    Console.WriteLine("PlatformService -> Using in sql server - " + connString);
+
+    builder.Services.AddDbContext<AppDbContext>(options => {
+        options.UseSqlServer(connString);
+    });
+}
+
 
 // Services
 builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();

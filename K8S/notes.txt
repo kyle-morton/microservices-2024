@@ -45,3 +45,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
     - remember to stop any existing local sql server instances or it will interfere w/ this 
     - check "trust server cert" on ssms login screen or it won't allow the connection
 
+11) Setup platform service when in production (appsettings.prod) to use sqlServer as data source
+- see program.cs in platformservice
+
+

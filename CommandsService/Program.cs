@@ -1,14 +1,17 @@
+using CommandsService.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // DbContext
-// builder.Services.AddDbContext<AppDbContext>(options => {
-//     options.UseInMemoryDatabase("InMemoryDB");
-// });
+builder.Services.AddDbContext<AppDbContext>(options => {
+    options.UseInMemoryDatabase("InMemoryDB");
+});
 
 // Register Automapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddScoped<ICommandRepo, CommandRepo>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

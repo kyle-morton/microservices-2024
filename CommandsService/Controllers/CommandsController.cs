@@ -22,7 +22,7 @@ namespace CommandsService.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<CommandReadModel>> GetCommandsForPlatform(int platformId)
         {
-            Console.WriteLine($"--> Hit GetCommandsForPlatform: {platformId}");
+            Console.WriteLine($"CommandsController: Hit GetCommandsForPlatform: {platformId}");
 
             if (!_repository.PlatformExists(platformId))
             {
@@ -37,7 +37,7 @@ namespace CommandsService.Controllers
         [HttpGet("{commandId}", Name = "GetCommandForPlatform")]
         public ActionResult<CommandReadModel> GetCommandForPlatform(int platformId, int commandId)
         {
-            Console.WriteLine($"--> Hit GetCommandForPlatform: {platformId} / {commandId}");
+            Console.WriteLine($"CommandsController: Hit GetCommandForPlatform: {platformId} / {commandId}");
 
             if (!_repository.PlatformExists(platformId))
             {
@@ -57,7 +57,7 @@ namespace CommandsService.Controllers
         [HttpPost]
         public ActionResult<CommandReadModel> CreateCommandForPlatform(int platformId, CommandCreateModel commandModel)
         {
-             Console.WriteLine($"--> Hit CreateCommandForPlatform: {platformId}");
+             Console.WriteLine($"CommandsController: Hit CreateCommandForPlatform: {platformId}");
 
             if (!_repository.PlatformExists(platformId))
             {

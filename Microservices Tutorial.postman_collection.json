@@ -103,6 +103,76 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Get Platforms",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{Local_CommandSrv_BaseURl}}/api/c/platforms",
+									"host": [
+										"{{Local_CommandSrv_BaseURl}}"
+									],
+									"path": [
+										"api",
+										"c",
+										"platforms"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Commands for Platform",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{Local_CommandSrv_BaseURl}}/api/c/platforms/1/commands",
+									"host": [
+										"{{Local_CommandSrv_BaseURl}}"
+									],
+									"path": [
+										"api",
+										"c",
+										"platforms",
+										"1",
+										"commands"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Command for Platform",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"HowTo\": \"Build a .Net project\",\r\n    \"CommandLine\": \"dotnet build\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{Local_CommandSrv_BaseURl}}/api/c/platforms/1/commands",
+									"host": [
+										"{{Local_CommandSrv_BaseURl}}"
+									],
+									"path": [
+										"api",
+										"c",
+										"platforms",
+										"1",
+										"commands"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
@@ -253,7 +323,7 @@
 					]
 				},
 				{
-					"name": "Nginx (API Gateway)",
+					"name": "Nginx (API Gateway - acme.com)",
 					"item": [
 						{
 							"name": "PlatformService",

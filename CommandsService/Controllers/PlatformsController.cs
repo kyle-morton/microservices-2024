@@ -1,6 +1,7 @@
 using System.Security.Cryptography.X509Certificates;
 using AutoMapper;
 using CommandsService.Data;
+using CommandsService.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CommandsService.Controllers;
@@ -18,10 +19,20 @@ public class PlatformsController : ControllerBase
         _mapper = mapper;
     }    
 
+    [HttpGet]
+    public ActionResult<IEnumerable<PlatformReadModel>> GetPlatforms() 
+    {
+        Console.WriteLine("PlatformsController:  Getting Platforms");
+
+        var platforms = _repo.GetAllPlatforms();
+
+        return Ok(_mapper.Map<IEnumerable<PlatformReadModel>>(platforms));
+    } 
+
     [HttpPost]
     public ActionResult TestInboundConnection() 
     {
-        Console.WriteLine("--> Inbound Post...");
+        Console.WriteLine("PlatformsController:  Inbound Post...");
 
         return Ok("Inbound test ok.");
     }

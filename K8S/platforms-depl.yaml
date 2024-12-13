@@ -27,8 +27,8 @@ spec:
   ports:
   - name: platformservice
     protocol: TCP
-    port: 8080
-    targetPort: 8080
+    port: 8080 # inside the cluster
+    targetPort: 8080 # # matching port on outside
   # - name: plafromgrpc
   #   protocol: TCP
   #   port: 666

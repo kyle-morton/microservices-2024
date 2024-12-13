@@ -19,7 +19,7 @@ Key Commands
 - this creates the service in K8S
 - verify it's running using 'kubectl get services'
 
-4) create deployment in k8s for commandSrv 
+4) create deployment in k8s for commandSrv
 
 5) create clusteredIP on both platform and commands service so they can communicate w/ each other's POD from within the K8S node
 
@@ -48,4 +48,10 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 11) Setup platform service when in production (appsettings.prod) to use sqlServer as data source
 - see program.cs in platformservice
 
+12) Setup rabbitMQ message bus in K8S (platformSrv will publish to the queue, CommandsSrv will consume this and create a matching platform in it's db)
+- rabbitmq-depl.yaml 
+- once applied, go to http://localhost:15672/, login as guest (pw: guest)
+
+REMEMBER: ClusteredIPs are used to give your apps a port mapping at the POD level (8080 inside pod, 8080 outside in the node/cluster)
+REMEMBER: LoadBalancers are used to give you a port into the cluster which you can then map to your PODs ClusteredIPs
 

@@ -9,7 +9,8 @@ public class PlatformsProfile : Profile
     public PlatformsProfile()
     {
         // Source -> Target
-        CreateMap<Platform, PlatformRead>();
-        CreateMap<PlatformCreate, Platform>();
+        CreateMap<Platform, PlatformReadModel>();
+        CreateMap<PlatformCreateModel, Platform>();
+        CreateMap<PlatformReadModel, PlatformPublishedModel>();
     }
 }

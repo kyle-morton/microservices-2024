@@ -2,11 +2,11 @@ using System.Text;
 using System.Text.Json;
 using PlatformService.Models;
 
-namespace PlatformService.SyncDataServices.Http;
+namespace PlatformService.DataServices.Sync.Http;
 
 public interface ICommandDataClient 
 {
-    Task SendPlatformToCommand(PlatformRead model);
+    Task SendPlatformToCommand(PlatformReadModel model);
 }
 
 public class HttpCommandDataClient : ICommandDataClient
@@ -21,7 +21,7 @@ public class HttpCommandDataClient : ICommandDataClient
     }
 
 
-    public async Task SendPlatformToCommand(PlatformRead model)
+    public async Task SendPlatformToCommand(PlatformReadModel model)
     {
         var httpContent = new StringContent(
             JsonSerializer.Serialize(model),

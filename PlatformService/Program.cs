@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PlatformService.Data;
+using PlatformService.DataServices.Sync.Http;
 using PlatformService.Repos;
-using PlatformService.SyncDataServices.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 Console.WriteLine("PlatformService -> " + builder.Environment.EnvironmentName);

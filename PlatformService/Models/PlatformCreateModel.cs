@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PlatformService.Models;
 
-public class PlatformCreate
+public class PlatformCreateModel
 {
     [Required]
     public string Name { get; set; }

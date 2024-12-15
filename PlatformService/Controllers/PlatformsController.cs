@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PlatformService.Domain;
 using PlatformService.Models;
 using PlatformService.Repos;
-using PlatformService.SyncDataServices.Http;
+using PlatformService.DataServices.Sync.Http;
 
 namespace PlatformService.Controllers;
 
@@ -26,16 +26,16 @@ public class PlatformsController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<List<PlatformRead>> GetPlatforms()
+    public ActionResult<List<PlatformReadModel>> GetPlatforms()
     {
         var platforms = _repo.Get();
-        var models = _mapper.Map<List<PlatformRead>>(platforms);
+        var models = _mapper.Map<List<PlatformReadModel>>(platforms);
 
         return Ok(models);
     }
 
     [HttpGet("{id}")]
-    public ActionResult<PlatformRead> GetPlatform(int id)
+    public ActionResult<PlatformReadModel> GetPlatform(int id)
     {
         var platform = _repo.Get(id);
 
@@ -44,17 +44,17 @@ public class PlatformsController : ControllerBase
             return NotFound();
         }
 
-        return Ok(_mapper.Map<PlatformRead>(platform));
+        return Ok(_mapper.Map<PlatformReadModel>(platform));
     }
 
     [HttpPost]
-    public async Task<ActionResult<PlatformRead>> CreatePlatform(PlatformCreate model)
+    public async Task<ActionResult<PlatformReadModel>> CreatePlatform(PlatformCreateModel model)
     {
         var platformToCreate = _mapper.Map<Platform>(model);
         _repo.Create(platformToCreate);
         var success = _repo.SaveChanges();
 
-        var platformRead = _mapper.Map<PlatformRead>(platformToCreate);
+        var platformRead = _mapper.Map<PlatformReadModel>(platformToCreate);
 
         try 
         {

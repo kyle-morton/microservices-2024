@@ -13,8 +13,8 @@ namespace CommandsService.Profiles
             CreateMap<Platform, PlatformReadModel>();
             CreateMap<CommandCreateModel, Command>();
             CreateMap<Command, CommandReadModel>();
-            // CreateMap<PlatformPublishedDto, Platform>()
-            //     .ForMember(dest => dest.ExternalID, opt => opt.MapFrom(src => src.Id));
+            CreateMap<PlatformPublishedModel, Platform>()
+                .ForMember(dest => dest.ExternalId, opt => opt.MapFrom(src => src.Id));
             // CreateMap<GrpcPlatformModel, Platform>()
             //     .ForMember(dest => dest.ExternalID, opt => opt.MapFrom(src => src.PlatformId))
             //     .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))

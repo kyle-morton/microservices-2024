@@ -10,6 +10,7 @@ public interface ICommandRepo {
     IEnumerable<Platform> GetAllPlatforms();
     void CreatePlatform(Platform platform);
     bool PlatformExists(int platformId);
+    bool ExternalPlatformExists(int externalPlatformId);
 
     // Commands
     IEnumerable<Command> GetCommandsForPlatform(int platformId);
@@ -44,6 +45,11 @@ public class CommandRepo : ICommandRepo
         }
         
         _context.Platforms.Add(platform);
+    }
+
+    public bool ExternalPlatformExists(int externalPlatformId)
+    {
+        return _context.Platforms.Any(p => p.ExternalId == externalPlatformId);
     }
 
     public IEnumerable<Platform> GetAllPlatforms()

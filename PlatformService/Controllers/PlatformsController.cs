@@ -4,6 +4,7 @@ using PlatformService.Domain;
 using PlatformService.Models;
 using PlatformService.Repos;
 using PlatformService.DataServices.Sync.Http;
+using PlatformService.DataServices.Async;
 
 namespace PlatformService.Controllers;
 
@@ -14,15 +15,18 @@ public class PlatformsController : ControllerBase
     private readonly IPlatformRepo _repo;
     private readonly IMapper _mapper;
     private readonly ICommandDataClient _commandDataClient;
+    private readonly IMessageBusClient _messageBusClient;
 
     public PlatformsController(
         IPlatformRepo repo, 
         IMapper mapper,
-        ICommandDataClient commandDataClient)
+        ICommandDataClient commandDataClient,
+        IMessageBusClient messageBusClient)
     {
         _repo = repo;
         _mapper = mapper;
         _commandDataClient = commandDataClient;
+        _messageBusClient = messageBusClient;
     }
 
     [HttpGet]
@@ -56,9 +60,22 @@ public class PlatformsController : ControllerBase
 
         var platformRead = _mapper.Map<PlatformReadModel>(platformToCreate);
 
+        // Send SYNC Message
         try 
         {
             await _commandDataClient.SendPlatformToCommand(platformRead);
+        }
+        catch(Exception ex) 
+        {
+            Console.WriteLine($"PlatformsController: Could not send synchronously {ex}");
+        }
+
+        // Send Async Message
+        try 
+        {
+            var publishModel = _mapper.Map<PlatformPublishedModel>(platformRead);
+            publishModel.Event = "Platform_Published"; // event that our consumer will need to listen for
+            _messageBusClient.PublishNewPlatform(publishModel);
         }
         catch(Exception ex) 
         {

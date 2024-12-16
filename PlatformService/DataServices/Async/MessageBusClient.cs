@@ -21,6 +21,7 @@ public class MessageBusClient : IMessageBusClient
     public MessageBusClient(IConfiguration configuration)
     {
         _configuration = configuration;
+
         var factory = new ConnectionFactory()
         {
             HostName = _configuration["RabbitMQHost"],

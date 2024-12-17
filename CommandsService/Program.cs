@@ -1,4 +1,5 @@
 using CommandsService.Data;
+using CommandsService.EventProcessing;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,9 @@ builder.Services.AddDbContext<AppDbContext>(options => {
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<ICommandRepo, CommandRepo>();
+
+// message bus DI
+builder.Services.AddSingleton<IEventProcessor, EventProcessor>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

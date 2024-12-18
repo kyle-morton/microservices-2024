@@ -372,7 +372,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"name\": \"testName\",\r\n    \"publisher\": \"testPublisher\",\r\n    \"cost\": \"testCost\"\r\n}",
+											"raw": "{\r\n    \"name\": \"testName2\",\r\n    \"publisher\": \"testPublisher2\",\r\n    \"cost\": \"testCost2\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -387,6 +387,100 @@
 											"path": [
 												"api",
 												"platforms"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Commands Copy",
+							"item": [
+								{
+									"name": "Create Platform",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{K8S_Nginx_Gateway_BaseUrl\n}}/api/c/platforms",
+											"host": [
+												"{{K8S_Nginx_Gateway_BaseUrl\n}}"
+											],
+											"path": [
+												"api",
+												"c",
+												"platforms"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Platforms",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{K8S_Nginx_Gateway_BaseUrl\n}}/api/c/platforms",
+											"host": [
+												"{{K8S_Nginx_Gateway_BaseUrl\n}}"
+											],
+											"path": [
+												"api",
+												"c",
+												"platforms"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Commands for Platform",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{K8S_Nginx_Gateway_BaseUrl\n}}/api/c/platforms/1002/commands",
+											"host": [
+												"{{K8S_Nginx_Gateway_BaseUrl\n}}"
+											],
+											"path": [
+												"api",
+												"c",
+												"platforms",
+												"1002",
+												"commands"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Command for Platform",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"HowTo\": \"Build a .Net project\",\r\n    \"CommandLine\": \"dotnet build\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{K8S_Nginx_Gateway_BaseUrl\n}}/api/c/platforms/1002/commands",
+											"host": [
+												"{{K8S_Nginx_Gateway_BaseUrl\n}}"
+											],
+											"path": [
+												"api",
+												"c",
+												"platforms",
+												"1002",
+												"commands"
 											]
 										}
 									},

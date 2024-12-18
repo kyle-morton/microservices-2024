@@ -1,3 +1,4 @@
+using CommandsService.AsyncDataServices;
 using CommandsService.Data;
 using CommandsService.EventProcessing;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,9 @@ builder.Services.AddSingleton<IEventProcessor, EventProcessor>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// runs in the background during lifetime of app
+builder.Services.AddHostedService<MessageBusSubscriber>();
 
 var app = builder.Build();
 

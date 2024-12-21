@@ -55,3 +55,6 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 REMEMBER: ClusteredIPs are used to give your apps a port mapping at the POD level (8080 inside pod, 8080 outside in the node/cluster)
 REMEMBER: LoadBalancers are used to give you a port into the cluster which you can then map to your PODs ClusteredIPs
 
+13) PlatformService will publish to rabbitMQ, CommandService will subscribe to it (to get new platforms)
+
+14) Last thing, setup gRPC between PlatformSrv and CommandSrv so on startup of commandSrv, it can reach out to PlatformSrv and get all existing platforms to drop in it's database

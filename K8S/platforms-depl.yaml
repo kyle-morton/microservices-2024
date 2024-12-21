@@ -29,10 +29,10 @@ spec:
     protocol: TCP
     port: 8080 # inside the cluster
     targetPort: 8080 # # matching port on outside
-  # - name: plafromgrpc
-  #   protocol: TCP
-  #   port: 666
-  #   targetPort: 666
+  - name: plafromgrpc
+    protocol: TCP
+    port: 666
+    targetPort: 666
 
   # to create depl -> kubectl apply -f .\platforms-depl.yaml
   # to refresh running depl and force k8s to pull latest DH image -> kubectl rollout restart deployment platforms-depl

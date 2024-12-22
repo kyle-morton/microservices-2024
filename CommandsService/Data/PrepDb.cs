@@ -1,53 +1,31 @@
-// using CommandsService.Domain;
+using CommandsService.Domain;
+using CommandsService.SyncDataServices.Grpc;
 
-// namespace CommandsService.Data;
+namespace CommandsService.Data;
 
-// public static class PrepDb
-// {
-//     public static void PopulateDb(WebApplication app)
-//     {
-//         using var serviceScope = app.Services.CreateScope();
+public static class PrepDb
+{
+    public static void PopulateDb(WebApplication app)
+    {
+        using var serviceScope = app.Services.CreateScope();
 
-//         var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
-//         Seed(context, app.Environment.IsProduction());
-//     }
+        var grpcClient = serviceScope.ServiceProvider.GetService<IPlatformDataClient>();
+        var platforms = grpcClient.ReturnAllPlatforms();
 
-//     private static void Seed(AppDbContext context, bool isProd)
-//     {
-//         // run migs if running against sql server
-//         if (isProd)  
-//         {
-//             Console.WriteLine("PrepDb: Attempting to apply migrations...");
-//             try
-//             {
-//                 context.Database.Migrate(); 
-//             }
-//             catch (Exception ex)
-//             {
-//                 Console.WriteLine($"PrepDb: unable to apply migrations {ex}");
-//                 throw;
-//             }
-//         }
+        var repo = serviceScope.ServiceProvider.GetService<ICommandRepo>();
 
+        Seed(repo, platforms);
+    }
 
-//         if (context == null)
-//         {
-//             Console.WriteLine("PrepDb: context null");
-//             return;
-//         }
-//         if (context.Platforms.Any())
-//         {
-//             Console.WriteLine("PrepDb: Data exists, skipping populate");
-//             return;
-//         }
+    private static void Seed(ICommandRepo repo, IEnumerable<Platform> platforms)
+    {
+        Console.WriteLine("PrepDB: Seeding new platforms...");
 
-//         Console.WriteLine("PrepDb: seeding data");
-//         context.Platforms.AddRange(new List<Platform> {
-//             new Platform { Name = "Dotnet", Publisher = "Microsoft", Cost = "Free" },
-//             new Platform { Name = "SQL Server", Publisher = "Microsoft", Cost = "Free" },
-//             new Platform { Name = "Kubernetes", Publisher = "Cloud Native Computing Foundation", Cost = "Free" }
-//         });
-
-//         context.SaveChanges();
-//     }
-// }
+        foreach(var plat in platforms) {
+            if (!repo.PlatformExists(plat.ExternalId)) {
+                repo.CreatePlatform(plat);
+                repo.SaveChanges();
+            }
+        }
+    }
+}

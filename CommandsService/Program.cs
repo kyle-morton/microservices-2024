@@ -1,6 +1,7 @@
 using CommandsService.AsyncDataServices;
 using CommandsService.Data;
 using CommandsService.EventProcessing;
+using CommandsService.SyncDataServices.Grpc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<AppDbContext>(options => {
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<ICommandRepo, CommandRepo>();
+builder.Services.AddScoped<IPlatformDataClient, PlatformDataClient>();
 
 // message bus DI
 builder.Services.AddSingleton<IEventProcessor, EventProcessor>();
@@ -38,5 +40,7 @@ app.MapControllers();
 
 // skipping https since it makes K8S setup harder (needed but not for this tutorial)
 // app.UseHttpsRedirection();
+
+PrepDb.PopulateDb(app);
 
 app.Run();

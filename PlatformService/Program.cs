@@ -9,19 +9,21 @@ var builder = WebApplication.CreateBuilder(args);
 Console.WriteLine("PlatformService -> " + builder.Environment.EnvironmentName);
 
 // DbContext - memory if not prod, sql server if prod
-if (!builder.Environment.IsProduction()) 
+if (!builder.Environment.IsProduction())
 {
     Console.WriteLine("PlatformService -> Using in memory db");
-    builder.Services.AddDbContext<AppDbContext>(options => {
+    builder.Services.AddDbContext<AppDbContext>(options =>
+    {
         options.UseInMemoryDatabase("InMemoryDB");
     });
 }
-else 
+else
 {
     var connString = builder.Configuration.GetConnectionString("PlatformConnStr");
     Console.WriteLine("PlatformService -> Using in sql server - " + connString);
 
-    builder.Services.AddDbContext<AppDbContext>(options => {
+    builder.Services.AddDbContext<AppDbContext>(options =>
+    {
         options.UseSqlServer(connString);
     });
 }
@@ -37,14 +39,14 @@ builder.Services.AddGrpc();
 // Register Automapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddControllers(); 
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
-{ 
+{
     app.UseSwagger();
     app.UseSwaggerUI();
 }
@@ -52,12 +54,17 @@ if (app.Environment.IsDevelopment())
 app.MapControllers();
 app.MapGrpcService<GrpcPlatformService>();
 
-app.MapGet("/protos/platforms.proto", async context => {
+app.MapGet("/protos/platforms.proto", async context =>
+{
     await context.Response.WriteAsync(File.ReadAllText("Protos/platforms.proto"));
 });
 
 // skipping https since it makes K8S setup harder (needed but not for this tutorial)
-// app.UseHttpsRedirection();
+
+// if (app.Environment.IsDevelopment())
+// {
+//     app.UseHttpsRedirection();
+// }
 
 // autopopulate db
 PrepDb.PopulateDb(app);

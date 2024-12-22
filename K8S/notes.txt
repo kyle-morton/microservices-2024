@@ -58,3 +58,5 @@ REMEMBER: LoadBalancers are used to give you a port into the cluster which you c
 13) PlatformService will publish to rabbitMQ, CommandService will subscribe to it (to get new platforms)
 
 14) Last thing, setup gRPC between PlatformSrv and CommandSrv so on startup of commandSrv, it can reach out to PlatformSrv and get all existing platforms to drop in it's database
+- REMEMBER: when testing locally, you need to run the server w/ https profile using command -> dotnet run --launch-profile https
+- That will expose the https route on the server side, make sure that port matches on the client side config 

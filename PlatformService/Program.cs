@@ -61,10 +61,10 @@ app.MapGet("/protos/platforms.proto", async context =>
 
 // skipping https since it makes K8S setup harder (needed but not for this tutorial)
 
-// if (app.Environment.IsDevelopment())
-// {
-//     app.UseHttpsRedirection();
-// }
+if (app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 // autopopulate db
 PrepDb.PopulateDb(app);

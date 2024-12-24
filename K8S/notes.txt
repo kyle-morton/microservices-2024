@@ -9,6 +9,11 @@ Key Commands
 - 'kubectl delete deployment {deploymentName}'
 - 'kubectl get services' (same idea, services like clusterIPs and nginx loadbalancers)
 - 'kubectl delete service {serviceName}'
+- to create depl -> kubectl apply -f .\platforms-depl.yaml
+- to refresh running depl and force k8s to pull latest DH image -> kubectl rollout restart deployment platforms-depl
+- to get depls -> kubectl get deployments
+- to get pods (running our app) -> kubectl get pods
+- to get services (node port & cluster IPs) -> kubectl get services
 
 1) Create a deployment file for our platform service (deploy it to a POD)
 - filename: platforms-depl.yaml

@@ -33,9 +33,3 @@ spec:
     protocol: TCP
     port: 666
     targetPort: 666
-
-  # to create depl -> kubectl apply -f .\platforms-depl.yaml
-  # to refresh running depl and force k8s to pull latest DH image -> kubectl rollout restart deployment platforms-depl
-  # to get depls -> kubectl get deployments
-  # to get pods (running our app) -> kubectl get pods
-  # to get services (node port & cluster IPs) -> kubectl get services

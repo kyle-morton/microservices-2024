@@ -4,8 +4,11 @@ Key Ideas
 
 Key Commands
 - kubectl -> base command upon which we'll build our k8s commands
-
-
+- 'kubectl get deployments' (get list of deployments that K8S will attempt to keep running)
+- 'kubectl apply -f {deploymentfile}'
+- 'kubectl delete deployment {deploymentName}'
+- 'kubectl get services' (same idea, services like clusterIPs and nginx loadbalancers)
+- 'kubectl delete service {serviceName}'
 
 1) Create a deployment file for our platform service (deploy it to a POD)
 - filename: platforms-depl.yaml

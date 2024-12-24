@@ -37,7 +37,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"testName\",\r\n    \"publisher\": \"testPublisher\",\r\n    \"cost\": \"testCost\"\r\n}",
+									"raw": "{\r\n    \"name\": \"testName\",\r\n    \"publisher\": \"testPublisher\",\r\n    \"cost\": \"testCost\"  \r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -129,7 +129,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{Local_CommandSrv_BaseURl}}/api/c/platforms/1/commands",
+									"raw": "{{Local_CommandSrv_BaseURl}}/api/c/platforms/4/commands",
 									"host": [
 										"{{Local_CommandSrv_BaseURl}}"
 									],
@@ -137,7 +137,7 @@
 										"api",
 										"c",
 										"platforms",
-										"1",
+										"4",
 										"commands"
 									]
 								}
@@ -159,7 +159,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{Local_CommandSrv_BaseURl}}/api/c/platforms/1/commands",
+									"raw": "{{Local_CommandSrv_BaseURl}}/api/c/platforms/4/commands",
 									"host": [
 										"{{Local_CommandSrv_BaseURl}}"
 									],
@@ -167,7 +167,7 @@
 										"api",
 										"c",
 										"platforms",
-										"1",
+										"4",
 										"commands"
 									]
 								}
@@ -334,9 +334,11 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{K8S_Nginx_Gateway_BaseUrl\n}}/api/platforms",
+											"raw": "http://acme.com/api/platforms",
+											"protocol": "http",
 											"host": [
-												"{{K8S_Nginx_Gateway_BaseUrl\n}}"
+												"acme",
+												"com"
 											],
 											"path": [
 												"api",
@@ -395,7 +397,7 @@
 							]
 						},
 						{
-							"name": "Commands Copy",
+							"name": "Commands",
 							"item": [
 								{
 									"name": "Create Platform",
